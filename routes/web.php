@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
 
 Auth::routes();
 
@@ -25,7 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/posts','App\Http\Controllers\PostsController');
 
 Route::resource('/newsletters',App\Http\Controllers\NewslettersController::class);
-=======
 //Basic routes
 Route::get('/test-route',function(){
     return "The Test Route ;";
@@ -47,4 +45,3 @@ Route::prefix('admin')->group(function () {
     });
 });
 Route::get('/test-controller');
->>>>>>> 516690930a41254a7eca96c7615957d1d6da403f
