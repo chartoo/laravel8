@@ -24,6 +24,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/posts','App\Http\Controllers\PostsController');
 
 Route::resource('/newsletters',App\Http\Controllers\NewslettersController::class);
+
+Route::get('/notify/newsletters',[App\Http\Controllers\NewslettersController::class,'notify']);
 //Basic routes
 Route::get('/test-route',function(){
     return "The Test Route ;";
