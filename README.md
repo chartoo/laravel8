@@ -16,6 +16,7 @@
 - php artisan view:clear
 
 ## Run app
+- php artisan migrate
 - php artisan serve
 
 ## Notes
