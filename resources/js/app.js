@@ -29,4 +29,21 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data(){
+        return{
+        messages: [],
+        }
+    },
+    created(){
+        Echo.channel('message-notification')
+            .listen('MessageNotification',(e)=>{
+                this.messages.push({title:e.message.title,body:e.message.body,time:e.message.time});
+                console.log('Message Here',this.messages);
+            });
+    },
+    methods: {
+        showAlert: () => {
+            alert("I'm working on it, comming soon.. ");
+          }
+    }
 });
