@@ -26,12 +26,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
+ 
     el: '#app',
     data(){
         return{
         messages: [],
+        store : {title:'',body:''}
         }
     },
     created(){
@@ -44,6 +45,24 @@ const app = new Vue({
     methods: {
         showAlert: () => {
             alert("I'm working on it, comming soon.. ");
+          },
+          submit : function(e){
+            e.preventDefault();
+            let formData = new FormData(this.$refs.form)
+            axios({
+                method: "post",
+                url: "/send-make-event",
+                data: formData,
+                headers: { "Content-Type": "multipart/form-data" },
+              })
+                .then((res) => {
+                   this.store = {title:'',body:''}
+                })
+                .catch((error) => {
+                    // error.response.status Check status code
+                }).finally(() => {
+                    //Perform action in always
+                });
           }
     }
 });

@@ -5321,7 +5321,11 @@ var app = new Vue({
   el: '#app',
   data: function data() {
     return {
-      messages: []
+      messages: [],
+      store: {
+        title: '',
+        body: ''
+      }
     };
   },
   created: function created() {
@@ -5340,6 +5344,27 @@ var app = new Vue({
   methods: {
     showAlert: function showAlert() {
       alert("I'm working on it, comming soon.. ");
+    },
+    submit: function submit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var formData = new FormData(this.$refs.form);
+      axios({
+        method: "post",
+        url: "/send-make-event",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (res) {
+        _this2.store = {
+          title: '',
+          body: ''
+        };
+      })["catch"](function (error) {// error.response.status Check status code
+      })["finally"](function () {//Perform action in always
+      });
     }
   }
 });

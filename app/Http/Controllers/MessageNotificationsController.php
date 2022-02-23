@@ -15,11 +15,10 @@ class MessageNotificationsController extends Controller
     {
         $data=$request->all();
         event(new MessageNotification(['title'=>$data['title'],'body'=>$data['message'],'time'=>date("F j, g:i a")]));
-        return back();
+        return true;
     }
     public function listen_event(Request $request)
     {
-        // dd(openssl_get_cert_locations());
         return view('messagenotifications.listen-event');
     }
 }
