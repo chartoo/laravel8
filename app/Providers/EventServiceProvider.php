@@ -7,7 +7,9 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Events\NewsletterSubscribe;
+use App\Events\ChatPrivateMessage;
 use App\Listeners\NewsletterSubscription;
+use App\Listeners\SendPrivateMessage;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewsletterSubscribe::class=>[
             NewsletterSubscription::class
+        ],
+        ChatPrivateMessage::class=>[
+            SendPrivateMessage::class
         ]
     ];
 

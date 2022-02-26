@@ -60,3 +60,10 @@ Route::get('/notify/newsletters',[App\Http\Controllers\NewslettersController::cl
 Route::get('/make-event',[App\Http\Controllers\MessageNotificationsController::class,'make_event'])->name('make-event');
 Route::post('/send-make-event',[App\Http\Controllers\MessageNotificationsController::class,'send_make_event'])->name('send-make-event');
 Route::get('/listen-event',[App\Http\Controllers\MessageNotificationsController::class,'listen_event'])->name('listen-event');
+
+/*
+* Private Chat Message
+*/
+Route::resource('/chat-private-messages',App\Http\Controllers\ChatPrivateMessageController::class)->middleware('auth');
+Route::resource('/chat-rooms',App\Http\Controllers\ChatRoomController::class)->middleware('auth');
+Route::post('/chat/{user_code}/{room_code}',[App\Http\Controllers\ChatRoomController::class,'entry'])->middleware('auth');

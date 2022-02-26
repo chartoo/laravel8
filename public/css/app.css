@@ -11286,3 +11286,20 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.vh-85 {
+    height: 85vh;
+}
+.vh-scroll{
+    overflow: overlay;
+}
+.header-user-middle>*{
+    vertical-align: middle;
+}
+.me-message {
+    text-align: right;
+}
+.me-message>span , .you-message>span {
+    background: rgb(82, 175, 238);
+    border-radius: 5px;
+    padding: 4px 13px;
+}

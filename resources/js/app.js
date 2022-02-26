@@ -20,6 +20,7 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('sendprivatemessage-component', require('./components/SendPrivateMessageComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -63,6 +64,10 @@ const app = new Vue({
                 }).finally(() => {
                     //Perform action in always
                 });
-          }
+          },
+        //   btn_send_message:function(e){
+        //       alert("we're working on it");
+        //       e.preventDefault();
+        //   }
     }
 });

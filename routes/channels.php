@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('message-notification', function () {
     return true;
 });
+Broadcast::channel('sending-message-{room_code}',function(){
+    return true;
+});
