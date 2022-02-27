@@ -40,6 +40,17 @@
                                 </div>
                             </a>
                         </div>
+                        <div class="col-md-12 text-center">
+                            <hr>
+                            <h3 class="text-center">Private Message Chatting</h3>
+                            <hr>
+                            <a href="/chat-rooms" class="btn btn-secondary" target="_blank">
+                                <div class="h-100 w-100 text-center p-4 m-2">
+                                   <b> Chat App</b>
+                                </div>
+                            </a>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>

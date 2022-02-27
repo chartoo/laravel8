@@ -10,8 +10,36 @@
 .me-message {
     text-align: right;
 }
+.me-message>span {
+    background: rgb(23 105 161);
+    color: white;
+}
+.you-message>span {
+    background: lightblue;
+}
+.me-message>small , .you-message>small {
+    padding: 0px 5px;
+}
 .me-message>span , .you-message>span {
-    background: rgb(82, 175, 238);
     border-radius: 5px;
     padding: 4px 13px;
+    max-width: 360px;
+    display: inline-block;
+}
+.div-list-user:hover{
+    background-color: lightgray;
+    border-radius: 8px;
+    transition:all .3s ease-in-out;
+}
+.div-list-user>span{
+    display: none;
+}
+.user-list-actions.inverse {
+    display: inline-block;
+}
+.div-list-user.inverse{
+    background-color: white;
+}
+.div-list-user>span:hover{
+    background:rgb(120, 134, 110);
 }

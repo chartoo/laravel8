@@ -79,6 +79,7 @@ class ChatRoomController extends Controller
             'room_code'=>$room_code,
             'user_code'=>$userCode,
             'user_name'=>$user->name,
+            'user_email'=>$user->email,
             'histories'=>$histories
         ]);
     }

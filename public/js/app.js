@@ -5363,8 +5363,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     getMessageParse: function getMessageParse(message) {
       var history = JSON.parse(message);
-      var me = '<div class="me-message"><span class="">' + history.message.text + '</span></div>';
-      var you = '<div class="you-message"><span class="">' + history.message.text + '</span><div>';
+      var me = '<div class="me-message"><small><sub>' + history.message.time + '<sub></small><span class="">' + history.message.text + '</span></div>';
+      var you = '<div class="you-message"><span class="">' + history.message.text + '</span><small><sub>' + history.message.time + '<sub></small><div>';
       var messageBox = this.currentId == history.from ? me : you;
       return messageBox;
     }
@@ -5453,11 +5453,10 @@ var app = new Vue({
       })["catch"](function (error) {// error.response.status Check status code
       })["finally"](function () {//Perform action in always
       });
-    } //   btn_send_message:function(e){
-    //       alert("we're working on it");
-    //       e.preventDefault();
-    //   }
-
+    },
+    UsermouseOver: function UsermouseOver(hover, elm) {
+      console.log("this element hover: ", hover);
+    }
   }
 });
 
@@ -34331,7 +34330,7 @@ var render = function () {
     _c("div", { staticClass: " shadow-lg bg-white pb-2 vh-85 vh-scroll" }, [
       _c("div", { staticClass: "border shadow-sm bg-light border-end p-3" }, [
         _c("h3", { staticClass: "header-user-middle" }, [
-          _c("i", { staticClass: "fa-solid fa-circle-user fa-2x" }),
+          _c("i", { staticClass: "fa-solid fa-circle-user fa-1x" }),
           _vm._v(" " + _vm._s(_vm.userName)),
         ]),
       ]),

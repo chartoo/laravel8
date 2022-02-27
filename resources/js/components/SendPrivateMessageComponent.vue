@@ -2,7 +2,7 @@
     <div>
     <div class=" shadow-lg bg-white pb-2 vh-85 vh-scroll">
     <div class="border shadow-sm bg-light border-end p-3">
-        <h3 class="header-user-middle"> <i class="fa-solid fa-circle-user fa-2x"></i> {{userName}}</h3>
+        <h3 class="header-user-middle"> <i class="fa-solid fa-circle-user fa-1x"></i> {{userName}}</h3>
     </div>
         <ul class="list-unstyled p-3">
             <li v-for="(message, index) in messages" :key="index" >
@@ -64,8 +64,8 @@
           },
           getMessageParse(message){
               var history=JSON.parse(message);
-              var me='<div class="me-message"><span class="">'+history.message.text+'</span></div>';
-              var you='<div class="you-message"><span class="">'+history.message.text+'</span><div>';
+              var me='<div class="me-message"><small><sub>'+history.message.time+'<sub></small><span class="">'+history.message.text+'</span></div>';
+              var you='<div class="you-message"><span class="">'+history.message.text+'</span><small><sub>'+history.message.time+'<sub></small><div>';
               var messageBox=this.currentId==history.from?me:you;
               return messageBox;
           }
