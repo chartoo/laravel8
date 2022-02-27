@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
+import Autocomplete from 'vuejs-auto-complete'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,7 +28,9 @@ Vue.component('sendprivatemessage-component', require('./components/SendPrivateM
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 const app = new Vue({
- 
+    components: {
+        Autocomplete
+      },
     el: '#app',
     data(){
         return{
@@ -67,6 +69,14 @@ const app = new Vue({
           },
           UsermouseOver:(hover,elm)=>{
                 console.log("this element hover: ",hover);
+          },
+          autoCompleteFormattedDisplay:function(result){
+           
+            return result.name;
+          },
+          selectFormattedData:function(result){
+            var url='/chat-rooms/'+btoa(result.value);
+            window.location.href=url;
           }
     }
 });

@@ -5,16 +5,20 @@
             <div class="col-md-3 px-0 h-100">
                 <div class="border-end border-top shadow-sm border-primary bg-white p-2 vh-85" data-bs-spy="scroll">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-circle-plus"></i></span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <autocomplete
+                         ref="autocomplete"
+                         :source="{{json_encode($users->except($current_id))}}"
+                         input-class="form-control bg-white"
+                         :results-display="autoCompleteFormattedDisplay"
+                         placeholder="Search user"
+                         @selected="selectFormattedData"
+                         >
+                        </autocomplete>
                       </div>
                       <hr>
-                    <ul class="list-unstyled">
-                        {{-- @foreach ($rooms as $room)
-                            <li class="list"> {{$room->name?$room->name:$room->user_two->name}}</li>
-                        @endforeach --}}
-                        @foreach ($users as $user)
-                        @if ($user->id!=$current_id)
+                      @if (!empty($related_users))
+                      <ul class="list-unstyled">
+                        @foreach ($related_users as $user)
                            <li>
                                <div class="border-bottom shadow-sm border-info p-3 cursor-pointer div-list-user" @mouseover="UsermouseOver(true,this)" @mouseout="UsermouseOver(false,this)" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="click to chat">
                                     <a href="{{url('chat-rooms').'/'.base64_encode($user->id)}}" class="text-decoration-none d-inline-block text-dark text-bold">
@@ -25,13 +29,17 @@
                                     </span>
                                 </div>
                             </li> 
-                        @endif
                         @endforeach
                     </ul>
+                      @else
+                        <h4 class="py-4 text-center bg-light text-danger">Empty related users.</h4>
+                      @endif
+                    
                 </div>
             </div>
             <div class="col-md-7 px-0 h-100 border rounded">
                 <div id="message-section">
+                    @if ($room_code!=null)
                     <sendprivatemessage-component 
                         v-bind:room-code="{{json_encode($room_code)}}" 
                         v-bind:user-code={{json_encode($user_code)}} 
@@ -39,6 +47,12 @@
                         v-bind:histories="{{json_encode($histories)}}" 
                         v-bind:user-name="{{json_encode($user_name)}}">
                     </sendprivatemessage-component>
+                    @else
+                    <h4 class="py-5 text-center">
+                        There has no any users' conversations!
+                    </h4>
+                    @endif
+                    
                 </div>
                 
             </div>

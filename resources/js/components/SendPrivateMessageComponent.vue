@@ -10,7 +10,7 @@
             </li>
         </ul>
     </div>
-    <form ref="form_send_message" method="post" class="bg-white pt-2" >
+    <form v-if="emptyChatHistory()" ref="form_send_message" method="post" class="bg-white pt-2" >
         <div class="row">
             <div class="col-md-1 text-end pt-1">
             <i class="fa-solid fa-circle-plus fa-2x text-primary"></i>
@@ -29,7 +29,7 @@
     export default {
         props: ['roomCode','currentId','userCode','userName','histories'],
         mounted() {
-            console.log('Component mounted.');
+            console.log('Component mounted.',this.histories);
         },
         data(){
             return{
@@ -68,6 +68,11 @@
               var you='<div class="you-message"><span class="">'+history.message.text+'</span><small><sub>'+history.message.time+'<sub></small><div>';
               var messageBox=this.currentId==history.from?me:you;
               return messageBox;
+          },
+          emptyChatHistory:function(){
+              console.log('RoomCode',this.roomCode);
+              if(this.roomCode!=null) return true;
+              else return false;
           }
         }
     }

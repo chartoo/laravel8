@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\ChatRoom;
+
 // class User extends Authenticatable
 class User extends Authenticatable
 {
@@ -52,4 +54,16 @@ class User extends Authenticatable
     // {
     //     return ucfirst($value);
     // }
+    public function get_user1_rooms()
+    {
+        return $this->hasMany(ChatRoom::class,'user1','id');
+    }
+    public function get_user2_rooms()
+    {
+        return $this->hasMany(ChatRoom::class,'user2','id');
+    }
+    public function get_rooms()
+    {
+        return $this->get_user1_rooms->merge($this->get_user2_rooms);
+    }
 }

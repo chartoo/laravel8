@@ -29,8 +29,24 @@ class ChatRoomController extends Controller
     {
         
         $current_id=Auth::user()->id;
-        if($this->rooms &&  $this->rooms[0]->user2)
-        return redirect('/chat-rooms/'.base64_encode($this->rooms[0]->user2));
+            $room=ChatRoom::where(function ($query) use ($current_id) {
+                $query->where('user1', '=', $current_id)
+                      ->orWhere('user2', '=', $current_id);
+            })->first();
+        if($room && !empty($room)){
+            $to_user_id=$room->user1==$current_id?$room->user2:$room->user1;
+            return redirect('/chat-rooms/'.base64_encode($to_user_id));
+        }
+        return view('chatrooms.index',[
+            'current_id'=>$current_id,
+            'current_code'=>base64_encode($current_id),
+            'room_code'=>null,
+            'user_code'=>null,
+            'user_name'=>null,
+            'user_email'=>null,
+            'histories'=>[],
+            'related_users'=>[]
+        ]);
     }
 
     /**
@@ -70,9 +86,16 @@ class ChatRoomController extends Controller
                 ['name'=>$user->name]
             );
         }
+        
         $histories=$room->private_messages()->pluck('message');
         $room_code=base64_encode($room->id.'-'.$room->name);
         $current_id=$auth->id;
+        $rooms=User::find($current_id)->get_rooms();
+        $related_users=array();
+        foreach ($rooms as $key => $room) {
+           if($room->user1!=$current_id) array_push($related_users,$room->user_one);
+           if($room->user2!=$current_id) array_push($related_users,$room->user_two);
+        }
         return view('chatrooms.index',[
             'current_id'=>$current_id,
             'current_code'=>base64_encode($current_id),
@@ -80,7 +103,8 @@ class ChatRoomController extends Controller
             'user_code'=>$userCode,
             'user_name'=>$user->name,
             'user_email'=>$user->email,
-            'histories'=>$histories
+            'histories'=>$histories,
+            'related_users'=>$related_users
         ]);
     }
 

@@ -43,3 +43,7 @@
 .div-list-user>span:hover{
     background:rgb(120, 134, 110);
 }
+.media-files-section{
+    height: 70vh;
+    overflow-y:auto ;
+}
