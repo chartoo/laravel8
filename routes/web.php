@@ -67,3 +67,11 @@ Route::get('/listen-event',[App\Http\Controllers\MessageNotificationsController:
 Route::resource('/chat-private-messages',App\Http\Controllers\ChatPrivateMessageController::class)->middleware('auth');
 Route::resource('/chat-rooms',App\Http\Controllers\ChatRoomController::class)->middleware('auth');
 Route::post('/chat/{user_code}/{room_code}',[App\Http\Controllers\ChatRoomController::class,'entry'])->middleware('auth');
+
+Route::get('/migrate',function(){
+    Artisan::call('migrate --force');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    return route('/');
+});

@@ -51,6 +51,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="/migrate" class="nav-link">Migration</a>
+                                </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
